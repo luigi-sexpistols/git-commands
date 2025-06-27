@@ -88,14 +88,16 @@ repo-config-setup () {
   process-config 'project.commitprefix'         ''         false     'Prefix for commit messages e.g. "[ABC-{ticketid}]"'
   process-config 'project.featurebranchfrom'    'develop'  true      'Branch type from which to create feature branches (master,develop)'
   process-config 'project.featurebranchformat'  ''         true      'Naming format for feature branches e.g. "feature/ABC-{ticketid}"'
-  process-config 'project.bugfixbranchformat'   ''         true      'Naming format for bugfix branches e.g. "bugfix/ABC-{ticketid}"'
   process-config 'project.bugfixbranchfrom'     'develop'  true      'Branch type from which to create bugfix branches (master,develop)'
-  process-config 'project.hotfixbranchformat'   ''         true      'Naming format for hotfix branches e.g. "hotfix/ABC-{ticketid}"'
+  process-config 'project.bugfixbranchformat'   ''         true      'Naming format for bugfix branches e.g. "bugfix/ABC-{ticketid}"'
   process-config 'project.hotfixbranchfrom'     'master'   true      'Branch type from which to create hotfix branches (master,develop)'
+  process-config 'project.hotfixbranchformat'   ''         true      'Naming format for hotfix branches e.g. "hotfix/ABC-{ticketid}"'
 }
 
 repo-hooks-setup () {
-  process-hook 'prepare-commit-message'
+  for n in "${src}"/hooks/*.sh; do
+    process-hook "$(rstrip "$n" '.sh' | xargs basename)"
+  done
 }
 
 perform=''

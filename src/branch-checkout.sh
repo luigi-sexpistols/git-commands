@@ -21,6 +21,8 @@ if true; then
     git pull
     git checkout "${target_branch}"
     git merge "${source_branch}"
+
+    set-ticket-id-if-missing "${target_branch}" "$ticket_id"
 else
     echo "Source branch: $source_branch"
     echo "Target branch: $target_branch"

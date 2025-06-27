@@ -20,6 +20,8 @@ if true; then
     git checkout "${source_branch}"
     git pull
     git checkout -b "${target_branch}"
+
+    set-ticket-id-if-missing "${target_branch}" "$ticket_id"
 else
     echo "Source branch: $source_branch"
     echo "Target branch: $target_branch"
