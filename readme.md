@@ -31,13 +31,18 @@ git feature-start 123
 git fs 123
 ```
 
+## Future State
+
+I think it should be possible to do most of these actions purely with git hooks, removing the need for the scripts.
+Probably worth investigating to see how much effort it would take.
+
 ## Installing
 
 > **Note:** The `global-setup.sh` script has not yet been created and will be a future upgrade.
 
 ~~Simply run `./src/global-setup.sh` to create the aliases in your global git config. These aliases are the same for every repository, it is repo-specific config that does the magic.~~
 
-Once global setup is complete, we can run `./src/repo-setup.sh` to create config entries and hooks in the currrent working directory.
+Once global setup is complete, we can run `./src/repo-setup.sh` to create config entries and hooks in the current working directory.
 
 ## Usage
 
@@ -106,6 +111,7 @@ Hooks in the `./hooks` directory are automatically symlinked into a configured g
 
 #### Globals and Functions
 
-Hooks cannot load `globals.sh`, since the location of the _called_ hook is within the repository, and the location of this project cannot be known.
+Functions and scripts in this project can be used in hooks, but they must be loaded manually _and should be done so with 
+care_; only load the functions you need and their dependencies.
 
-It could be set up that this project's location is injected into the git config for the project, which would allow calls to the globals files from hooks. I wouldn't recommend this, however, as the hooks should _probably_ stand on their own; allowing users access to the functions and scripts in this project feels like a bad idea...
+See `./src/hooks/post-checkout.sh` for an example of how to do it.

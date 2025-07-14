@@ -4,12 +4,12 @@
 
 branch_type=$1
 
-validate-branch "${branch_type}"
+validate-branch "$branch_type"
 
-branch_name=$(cfg-branch $branch_type)
+branch_name=$(cfg-branch "$branch_type")
 
 if ! branch-exists "$branch_name"; then
-    echo "Branch '$branch_name' does not exist!"
+    echo "Target branch '$branch_name' does not exist!"
     exit 1
 fi
 

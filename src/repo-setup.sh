@@ -53,17 +53,19 @@ process-config () {
 
 process-hook () {
   local hook_name="$1"
-  local hooks_src="${src}/hooks"
+  local hooks_src="$src"/hooks
   local hooks_dst="$(realpath ./.git/hooks)"
 
   if [ -n "$2" ]; then
     hooks_src="$2"
   fi
 
-  echo "Processing hook: '${hooks_src}/${hook_name}.sh' -> '${hooks_dst}/${hook_name}'"
+  echo "Processing hook '${hook_name}'"
+  echo "'${hooks_src}/${hook_name}.sh' -> '${hooks_dst}/${hook_name}'"
 
   if [ -L "${hooks_dst}/${hook_name}" ]; then
     echo "Hook appears to be installed."
+    echo ""
     return 0
   fi
 
