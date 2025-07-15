@@ -11,9 +11,9 @@ source_branch_type=$(cfg-branch-from $target_branch_type)
 source_branch=$(cfg-branch $source_branch_type)
 target_branch=$(format-branch $target_branch_type $ticket_id)
 
-if ! branch-exists "${target_branch}"; then
-    echo "Target branch '${target_branch}' does not exist!"
-    exit 1
+if ! branch-exists "$target_branch"; then
+  echo "Target branch '${target_branch}' does not exist!"
+  exit 1
 fi
 
 if true; then
