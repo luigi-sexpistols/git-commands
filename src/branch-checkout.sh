@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(echo $0 | xargs realpath | xargs dirname)/globals.sh"
+source "$(echo $0 | xargs realpath | xargs dirname)/globals.sh"
 
 target_branch_type=$1
 ticket_id=$2

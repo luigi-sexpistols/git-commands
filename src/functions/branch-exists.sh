@@ -33,7 +33,16 @@ branch-exists-origin () {
 branch-exists () {
   local branch_name="$1"
 
-  if branch-exists-local "$branch_name"; then return 0; fi
-  if branch-exists-origin "$branch_name"; then return 0; fi
+  if branch-exists-local "$branch_name"; then
+    cry "Branch '${branch_name}' exists locally."
+    return 0
+  fi
+
+  if branch-exists-origin "$branch_name"; then
+    cry "Branch '${branch_name}' exists in origin."
+    return 0
+  fi
+
+  cry "Branch '${branch_name}' does not exist in local or origin."
   return 1
 }

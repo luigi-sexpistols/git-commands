@@ -2,6 +2,7 @@
 
 source "$(echo $0 | xargs realpath | xargs dirname)/globals.sh"
 
+# todo - the aliases should be installed into each repo by `repo-setup.sh`
 
 validate-action () {
   if ! is-valid-action "$1"; then
