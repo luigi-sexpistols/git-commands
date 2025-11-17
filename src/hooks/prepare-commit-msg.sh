@@ -18,8 +18,8 @@ prepare-commit-message () {
       prefix \
       message
 
-    format=$(git config project.commitprefix)
-    message=$(<"$input_file")
+    format="$(git config project.commitprefix)"
+    message="$(<"$input_file")"
 
     log "Input file: $input_file"
     log "Format: $format"

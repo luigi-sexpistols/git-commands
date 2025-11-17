@@ -35,7 +35,7 @@ post-checkout () {
 
   if [ "$ticket_id" == "" ]; then
     echo "Branch '$branch' does not have a valid ticket ID!"
-    return 1
+    return 0
   fi
 
   git config "branch.${branch}.ticket-id" "$ticket_id"
